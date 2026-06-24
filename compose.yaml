@@ -1,0 +1,45 @@
+services:
+  node-a:
+    build: .
+    container_name: pulse-node-a
+    environment:
+      NODE_ID: node-a
+      PORT: 9001
+      PEERS: node-b:9001,node-c:9001
+      LIMIT: ${LIMIT:-50}
+      WINDOW_BUCKETS: ${WINDOW_BUCKETS:-10}
+      BUCKET_MS: ${BUCKET_MS:-1000}
+      GOSSIP_INTERVAL_MS: ${GOSSIP_INTERVAL_MS:-200}
+    ports:
+      - "8081:9001"
+    restart: unless-stopped
+
+  node-b:
+    build: .
+    container_name: pulse-node-b
+    environment:
+      NODE_ID: node-b
+      PORT: 9001
+      PEERS: node-a:9001,node-c:9001
+      LIMIT: ${LIMIT:-50}
+      WINDOW_BUCKETS: ${WINDOW_BUCKETS:-10}
+      BUCKET_MS: ${BUCKET_MS:-1000}
+      GOSSIP_INTERVAL_MS: ${GOSSIP_INTERVAL_MS:-200}
+    ports:
+      - "8082:9001"
+    restart: unless-stopped
+
+  node-c:
+    build: .
+    container_name: pulse-node-c
+    environment:
+      NODE_ID: node-c
+      PORT: 9001
+      PEERS: node-a:9001,node-b:9001
+      LIMIT: ${LIMIT:-50}
+      WINDOW_BUCKETS: ${WINDOW_BUCKETS:-10}
+      BUCKET_MS: ${BUCKET_MS:-1000}
+      GOSSIP_INTERVAL_MS: ${GOSSIP_INTERVAL_MS:-200}
+    ports:
+      - "8083:9001"
+    restart: unless-stopped

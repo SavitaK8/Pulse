@@ -1,0 +1,13 @@
+*.class
+*.jar
+out/
+target/
+work/
+benchmark-results/
+__pycache__/
+*.pyc
+
+# IDEs
+.idea/
+*.iml
+.vscode/
