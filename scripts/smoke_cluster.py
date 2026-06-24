@@ -62,6 +62,7 @@ def main() -> None:
                 "WINDOW_BUCKETS": "10",
                 "BUCKET_MS": "1000",
                 "GOSSIP_INTERVAL_MS": "50",
+                "CLUSTER_SECRET": "0123456789abcdef0123456789abcdef",
             })
             log = open(work_dir / f"{node_id}.log", "w", encoding="utf-8")
             logs.append(log)
